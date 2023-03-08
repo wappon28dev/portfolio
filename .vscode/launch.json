@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["run", "dev", "--open"],
+      "cwd": "${workspaceRoot}"
+    }
+  ]
+}

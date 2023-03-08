@@ -1,0 +1,21 @@
+{
+  "eslint.probe": ["svelte"],
+  "eslint.validate": ["svelte"],
+  "cSpell.words": [
+    "ardenivanov",
+    "CEINTL",
+    "dbaeumer",
+    "devcontainers",
+    "ecma",
+    "errorlens",
+    "esbenp",
+    "mosapride",
+    "quickfixes",
+    "smui",
+    "tamj",
+    "usernamehw",
+    "Yoshinori",
+    "zenkaku"
+  ],
+  "nuxt.isNuxtApp": false
+}
