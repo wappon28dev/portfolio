@@ -1,4 +1,4 @@
-name: vercel
+name: cloudflare
 
 on:
   push:
@@ -7,8 +7,6 @@ on:
 
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - "site/**"
   workflow_dispatch:
 
 jobs:
@@ -16,23 +14,39 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@v2
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v1
+      - name: 🔨 Prepare Node environment
+        uses: actions/setup-node@v1
+
+      - name: 🎉 Install project dependencies
+        run: yarn
+
+      - name: 🏗️ Generate static files
+        run: yarn run build
+
+      - name: 🚀 Deploy to Cloudflare Pages
+        id: cloudflare_pages_deploy
+        uses: cloudflare/pages-action@1
         with:
-          node-version: 16.x
-      - run: yarn
-      - run: yarn build
-      - name: copy file
-        uses: canastro/copy-file-action@master
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: wappon-28-dev
+          directory: ./build
+
+      - name: 🚀 Deploy pages with commit sha
+        uses: actions/github-script@v6
         with:
-          source: "./vercel.json"
-          target: "./build/vercel.json"
-      - name: Deploy to Vercel Action
-        uses: BetaHuhn/deploy-to-vercel-action@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          WORKING_DIRECTORY: "./build"
+          script: |
+            const sha = context.payload.pull_request?.head.sha ?? context.sha;
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              context: 'Cloudflare Pages',
+              description: 'Cloudflare Pages deployment',
+              state: 'success',
+              sha,
+              target_url: "${{ steps.cloudflare_pages_deploy.outputs.url }}",
+            });
