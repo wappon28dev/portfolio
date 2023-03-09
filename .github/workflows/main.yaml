@@ -22,6 +22,8 @@ jobs:
 
       - name: 🔨 Prepare Node environment
         uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
 
       - name: 🎉 Install project dependencies
         run: yarn
