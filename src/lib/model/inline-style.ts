@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/restrict-plus-operands */
 import type { CSSObject } from "@emotion/css";
 
 const keyWithPx: (keyof CSSObject)[] = [

@@ -1,10 +1,13 @@
 <script lang="ts">
   import Tree from "$lib/assets/animated/tree.svelte";
+  import { MetaTags } from "svelte-meta-tags";
   import { isLoading } from "$lib/model/store";
   import { onMount } from "svelte";
 
   onMount(() => ($isLoading = false));
 </script>
+
+<MetaTags title="わっぽん" description="Howdy!" />
 
 <main>
   <div class="container">

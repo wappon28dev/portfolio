@@ -64,6 +64,7 @@
   "dependencies": {
     "@emotion/css": "^11.10.6",
     "eslint-plugin-prettier": "^4.2.1",
+    "svelte-meta-tags": "^2.6.5",
     "svelte-preprocess": "^5.0.1",
     "svelte-scrollto": "^0.2.0"
   }
