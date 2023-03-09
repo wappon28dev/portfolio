@@ -8,16 +8,22 @@
   function scrollContainer() {
     return document.documentElement || document.body;
   }
+
   function handleOnScroll() {
     if (!scrollContainer()) return;
     hidden = !(scrollContainer().scrollTop > showOnPx);
+  }
+
+  function scroll2Top() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    animateScroll.scrollToTop();
   }
 </script>
 
 <svelte:window on:scroll={handleOnScroll} />
 
 <div class="back-to-top fab-container" class:hidden>
-  <Fab color="primary" on:click={animateScroll.scrollToTop}>
+  <Fab color="primary" on:click={scroll2Top}>
     <Icon class="material-icons">arrow_upward</Icon>
   </Fab>
 </div>

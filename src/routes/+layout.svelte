@@ -28,7 +28,7 @@
   let topAppBar: TopAppBarComponentDev;
   let hasAppMounted = false;
 
-  onMount(async () => {
+  onMount(() => {
     currentPath.set(new URL(location.href).pathname);
     hasAppMounted = true;
     updateSize();

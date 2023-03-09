@@ -1,6 +1,6 @@
 {
-  "eslint.probe": ["svelte"],
-  "eslint.validate": ["svelte"],
+  "eslint.probe": ["typescript", "svelte"],
+  "eslint.validate": ["typescript", "svelte"],
   "cSpell.words": [
     "ardenivanov",
     "CEINTL",
@@ -11,6 +11,7 @@
     "esbenp",
     "mosapride",
     "quickfixes",
+    "scrollto",
     "smui",
     "tamj",
     "usernamehw",

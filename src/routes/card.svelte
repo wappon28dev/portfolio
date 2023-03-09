@@ -1,6 +1,6 @@
 <script lang="ts">
   import { isLoading } from "$lib/model/store";
-  import Card, { Content, PrimaryAction, Media } from "@smui/card";
+  import Card, { Content, PrimaryAction } from "@smui/card";
   import { onMount } from "svelte";
 
   type CoffeeType = {
@@ -36,7 +36,7 @@
     <p class="loading">loading...</p>
   {:then coffees}
     <div class="card-container">
-      {#each coffees as coffee, i}
+      {#each coffees as coffee}
         <Card>
           <div style="padding: 1rem;">
             <h2 class="mdc-typography--headline6" style="margin: 0;">
