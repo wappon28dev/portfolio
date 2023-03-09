@@ -4,6 +4,10 @@
 
 :root {
   --mdc-typography-font-family: "M PLUS 1p";
+  --app-bar-height: 64px;
+  @media screen and (max-width: 599px) {
+    --app-bar-height: 56px;
+  }
 }
 
 .progress-bar {
@@ -13,10 +17,6 @@
 .progress-bar-mobile {
   @include linear-progress.bar-color(var(--m3-on-primary));
   @include linear-progress.buffer-color(transparent);
-}
-
-.container {
-  padding: 30px;
 }
 
 html,

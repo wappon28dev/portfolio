@@ -46,24 +46,24 @@
 
 <div style={`cursor: ${$isLoading ? "progress" : "normal"};`}>
   {#if hasAppMounted}
-    <TopAppBar bind:this={topAppBar} variant="fixed">
+    <TopAppBar bind:this={topAppBar} variant="standard">
       <Row>
         <Section>
           <IconButton
             class="material-icons-outlined"
             on:click={() => runTransition(PathId.HOME)}
           >
-            collections_bookmark
+            home
           </IconButton>
           <Title
             style="cursor: pointer;"
             on:click={() => runTransition(PathId.HOME)}
-            ><strong>tpl-svelte</strong></Title
+            ><strong>わっぽん</strong></Title
           >
         </Section>
         <Section align="end" toolbar>
           <Button
-            on:click={() => goto("https://github.com/wappon-28-dev/tpl-svelte")}
+            on:click={() => goto("https://github.com/wappon-28-dev/portfolio")}
           >
             <Icon class="material-icons">launch</Icon>
             <Label>source</Label>
@@ -95,6 +95,8 @@
 <style lang="scss">
   :global(.app-content) {
     overflow-y: visible;
+    overflow-x: hidden;
+
     height: 100%;
     width: 100%;
   }
@@ -104,10 +106,6 @@
       .mdc-circular-progress__indeterminate-circle-graphic
     ) {
     stroke: var(--m3-on-primary);
-  }
-  :global(.app-content) {
-    overflow-y: visible;
-    overflow-x: hidden;
   }
   .progress-mobile {
     margin-top: -5.5px;
