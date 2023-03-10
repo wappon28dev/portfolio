@@ -2,9 +2,6 @@ name: cloudflare
 
 on:
   push:
-    branches:
-      - main
-
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
@@ -38,7 +35,7 @@ jobs:
           projectName: wappon-28-dev
           directory: ./build
 
-      - name: 🚀 Deploy pages with commit sha
+      - name: 🚀 Deploy pages based on commit sha
         uses: actions/github-script@v6
         with:
           script: |
@@ -46,8 +43,8 @@ jobs:
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              context: 'Cloudflare Pages',
-              description: 'Cloudflare Pages deployment',
+              context: 'cloudflare / build (push)',
+              description: 'Commit based deploy',
               state: 'success',
               sha,
               target_url: "${{ steps.cloudflare_pages_deploy.outputs.url }}",

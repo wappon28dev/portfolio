@@ -13,3 +13,4 @@ package-lock.json
 yarn.lock
 
 /static/styles/smui*.css
+/src/app.html

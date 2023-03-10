@@ -8,20 +8,17 @@
   } from "@smui/top-app-bar";
   import IconButton, { Icon } from "@smui/icon-button";
   import { AppContent } from "@smui/drawer";
-  import { currentPath, isLandscape, isLoading } from "$lib/model/store";
+  import { isLandscape, isLoading } from "$lib/model/store";
   import { onMount } from "svelte";
   import PageTransition from "$lib/components/page-transition.svelte";
   import LinearProgress from "@smui/linear-progress";
   import Splash from "$lib/components/splash.svelte";
-  import {
-    isLandscapeDetect,
-    PathId,
-    runTransition,
-  } from "$lib/model/constants";
+  import { isLandscapeDetect, runTransition } from "$lib/model/constants";
   import type { PageData } from "./$types";
   import Button, { Label } from "@smui/button";
   import BackToTop from "$lib/components/back-to-top.svelte";
   import { goto } from "$app/navigation";
+  import { pageManifests } from "$lib/model/manifests";
 
   export let data: PageData;
 
@@ -29,7 +26,6 @@
   let hasAppMounted = false;
 
   onMount(() => {
-    currentPath.set(new URL(location.href).pathname);
     hasAppMounted = true;
     updateSize();
 
@@ -51,13 +47,13 @@
         <Section>
           <IconButton
             class="material-icons-outlined"
-            on:click={() => runTransition(PathId.HOME)}
+            on:click={() => runTransition(pageManifests.HOME)}
           >
             home
           </IconButton>
           <Title
             style="cursor: pointer;"
-            on:click={() => runTransition(PathId.HOME)}
+            on:click={() => runTransition(pageManifests.HOME)}
             ><strong>わっぽん</strong></Title
           >
         </Section>

@@ -1,21 +1,17 @@
 import { goto } from "$app/navigation";
 import { base } from "$app/paths";
+import { page } from "$app/stores";
 import { get } from "svelte/store";
-import { currentPath } from "./store";
+import type { PageManifest } from "./manifests";
 
 type valueOf<T> = T[keyof T];
 type PickType<T, K extends keyof T> = T[K];
 
-const PathId = {
-  HOME: "/",
-} as const;
-
-type PathId = valueOf<typeof PathId>;
-
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const runTransition = (path: PathId) => {
-  if (get(currentPath) === path) return;
+const runTransition = (to: PageManifest) => {
+  const path = to.path;
+  if (get(page).url.pathname === path) return;
   void goto(base + path);
 };
 
@@ -27,4 +23,4 @@ function isLandscapeDetect(): boolean {
 }
 
 export type { valueOf, PickType };
-export { PathId, runTransition, wait, isLandscapeDetect };
+export { runTransition, wait, isLandscapeDetect };
