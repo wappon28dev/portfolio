@@ -6,7 +6,7 @@ type PageManifest = {
     title: string | undefined;
     description: string | undefined;
     ogp: {
-      img: string;
+      img: string | undefined;
     };
   };
 };
@@ -17,7 +17,7 @@ const HOME: PageManifest = {
     title: undefined,
     description: undefined,
     ogp: {
-      img: "/assets/ogt/home.png",
+      img: undefined,
     },
   },
 };
