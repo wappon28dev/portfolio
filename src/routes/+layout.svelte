@@ -19,6 +19,8 @@
   import BackToTop from "$lib/components/back-to-top.svelte";
   import { goto } from "$app/navigation";
   import { pageManifests } from "$lib/model/manifests";
+  import HomeOutline from "svelte-material-icons/HomeOutline.svelte";
+  import Launch from "svelte-material-icons/Launch.svelte";
 
   export let data: PageData;
 
@@ -40,16 +42,13 @@
   }
 </script>
 
-<Splash {hasLoaded} /> 
+<Splash {hasLoaded} />
 <div style={`cursor: ${$isLoading ? "progress" : "normal"};`}>
   <TopAppBar bind:this={topAppBar} variant="standard">
     <Row>
       <Section>
-        <IconButton
-          class="material-icons-outlined"
-          on:click={() => runTransition(pageManifests.HOME)}
-        >
-          home
+        <IconButton on:click={() => runTransition(pageManifests.HOME)}>
+          <HomeOutline />
         </IconButton>
         <Title
           style="cursor: pointer;"
@@ -61,7 +60,7 @@
         <Button
           on:click={() => goto("https://github.com/wappon-28-dev/portfolio")}
         >
-          <Icon class="material-icons">launch</Icon>
+          <Icon><Launch /></Icon>
           <Label>source</Label>
         </Button>
       </Section>
