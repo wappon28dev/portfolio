@@ -25,6 +25,9 @@ jobs:
       - name: 🏗️ Generate static files
         run: yarn run build
 
+      - name: 🔧 Copy configs to build directory
+        run: cp -r ./config/* ./build
+
       - name: 🚀 Deploy to Cloudflare Pages
         id: cloudflare_pages_deploy
         uses: cloudflare/pages-action@v1.4.0
