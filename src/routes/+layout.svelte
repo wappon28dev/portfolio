@@ -23,11 +23,11 @@
   export let data: PageData;
 
   let topAppBar: TopAppBarComponentDev;
-  let hasAppMounted = false;
+  export let hasLoaded = false;
 
   onMount(() => {
-    hasAppMounted = true;
     updateSize();
+    hasLoaded = true;
 
     // callback windows width event
     window.addEventListener("resize", updateSize);
@@ -40,50 +40,47 @@
   }
 </script>
 
+<Splash {hasLoaded} /> 
 <div style={`cursor: ${$isLoading ? "progress" : "normal"};`}>
-  {#if hasAppMounted}
-    <TopAppBar bind:this={topAppBar} variant="standard">
-      <Row>
-        <Section>
-          <IconButton
-            class="material-icons-outlined"
-            on:click={() => runTransition(pageManifests.HOME)}
-          >
-            home
-          </IconButton>
-          <Title
-            style="cursor: pointer;"
-            on:click={() => runTransition(pageManifests.HOME)}
-            ><strong>わっぽん</strong></Title
-          >
-        </Section>
-        <Section align="end" toolbar>
-          <Button
-            on:click={() => goto("https://github.com/wappon-28-dev/portfolio")}
-          >
-            <Icon class="material-icons">launch</Icon>
-            <Label>source</Label>
-          </Button>
-        </Section>
-      </Row>
+  <TopAppBar bind:this={topAppBar} variant="standard">
+    <Row>
+      <Section>
+        <IconButton
+          class="material-icons-outlined"
+          on:click={() => runTransition(pageManifests.HOME)}
+        >
+          home
+        </IconButton>
+        <Title
+          style="cursor: pointer;"
+          on:click={() => runTransition(pageManifests.HOME)}
+          ><strong>わっぽん</strong></Title
+        >
+      </Section>
+      <Section align="end" toolbar>
+        <Button
+          on:click={() => goto("https://github.com/wappon-28-dev/portfolio")}
+        >
+          <Icon class="material-icons">launch</Icon>
+          <Label>source</Label>
+        </Button>
+      </Section>
+    </Row>
 
-      <div class="progress-mobile">
-        {#if $isLoading}
-          <LinearProgress class="progress-bar-mobile" indeterminate />
-        {/if}
-      </div>
-    </TopAppBar>
+    <div class="progress-mobile">
+      {#if $isLoading}
+        <LinearProgress class="progress-bar-mobile" indeterminate />
+      {/if}
+    </div>
+  </TopAppBar>
 
-    <AutoAdjust {topAppBar}>
-      <AppContent class="app-content">
-        <PageTransition {data}>
-          <slot />
-        </PageTransition>
-      </AppContent>
-    </AutoAdjust>
-  {:else}
-    <Splash />
-  {/if}
+  <AutoAdjust {topAppBar}>
+    <AppContent class="app-content">
+      <PageTransition {data}>
+        <slot />
+      </PageTransition>
+    </AppContent>
+  </AutoAdjust>
 
   <BackToTop />
 </div>

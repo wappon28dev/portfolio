@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
+<head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <link
     rel="icon"
@@ -24,40 +24,43 @@
 
   <!-- SMUI Styles -->
   <link
-    rel="stylesheet"
-    id="smui"
     href="%sveltekit.assets%/styles/smui.css"
     media="(prefers-color-scheme: light)"
-  />
-  <link
     rel="stylesheet"
     id="smui"
+  />
+  <link
     href="%sveltekit.assets%/styles/smui-dark.css"
     media="screen and (prefers-color-scheme: dark)"
+    rel="stylesheet"
+    id="smui"
   />
   <link
-    rel="stylesheet"
-    id="color"
     href="%sveltekit.assets%/styles/variables.css"
     media="(prefers-color-scheme: light)"
-  />
-  <link
     rel="stylesheet"
     id="color"
-    href="%sveltekit.assets%/styles/variables-dark.css"
-    media="screen and (prefers-color-scheme: dark)"
   />
   <link
+    href="%sveltekit.assets%/styles/variables-dark.css"
+    media="screen and (prefers-color-scheme: dark)"
     rel="stylesheet"
+    id="color"
+  />
+  <link
     href="%sveltekit.assets%/styles/global.css"
+    rel="stylesheet"
   />
   <title>わっぽん</title>
 
   %sveltekit.head%
 </head>
 
-<body>
-  <div class="mdc-typography">%sveltekit.body%</div>
+<body data-sveltekit-preload-data="hover">
+  <div
+    class="mdc-typography"
+    style="display: contents"
+  >%sveltekit.body%</div>
 </body>
 
 <style>
