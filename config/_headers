@@ -1,13 +1,12 @@
 https://wappon-28-dev.pages.dev/*
   X-Robots-Tag: noindex
 
-https://*.wappon-28-dev.pages.dev/*
+https://_.wappon-28-dev.pages.dev/_
   X-Robots-Tag: noindex
 
 https://wappon-28-dev.com/*
-  Link: https://wappon-28-dev.com; rel=canonical
-  
+  Link: <https://wappon-28-dev.com>; rel="canonical"
+
 https://beta.wappon-28-dev.com/*
   X-Robots-Tag: noindex
-  Link: https://beta.wappon-28-dev.com; rel=canonical
-  
+  Link: <https://beta.wappon-28-dev.com>; rel="canonical"

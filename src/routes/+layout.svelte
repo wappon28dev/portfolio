@@ -42,12 +42,14 @@
   }
 </script>
 
-<Splash {hasLoaded} />
 <div style={`cursor: ${$isLoading ? "progress" : "normal"};`}>
   <TopAppBar bind:this={topAppBar} variant="standard">
     <Row>
       <Section>
-        <IconButton on:click={() => runTransition(pageManifests.HOME)}>
+        <IconButton
+          on:click={() => runTransition(pageManifests.HOME)}
+          aria-label="ホームへ"
+        >
           <HomeOutline />
         </IconButton>
         <Title
@@ -59,6 +61,7 @@
       <Section align="end" toolbar>
         <Button
           on:click={() => goto("https://github.com/wappon-28-dev/portfolio")}
+          aria-label="ソースを見に行く"
         >
           <Icon><Launch /></Icon>
           <Label>source</Label>
@@ -83,6 +86,7 @@
 
   <BackToTop />
 </div>
+<Splash {hasLoaded} />
 
 <style lang="scss">
   :global(.app-content) {

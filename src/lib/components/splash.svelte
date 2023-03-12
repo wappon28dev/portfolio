@@ -2,20 +2,22 @@
   export let hasLoaded = false;
 </script>
 
-<main class={`fade${hasLoaded ? "-out" : ""}`}>
+<div class={`wrapper fade${hasLoaded ? "-out" : ""}`}>
   <div class="content-container">
     <content>
       <div class="spinner" />
       <p>読み込み中...</p>
     </content>
   </div>
-</main>
+</div>
 
 <style lang="scss">
-  main {
-    height: 100%;
-    width: 100%;
+  .wrapper {
     position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     z-index: 999;
     background-color: var(--m3-back);
   }
@@ -26,6 +28,8 @@
     }
     100% {
       opacity: 0;
+      z-index: -1;
+      display: none;
     }
   }
 

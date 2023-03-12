@@ -3,7 +3,7 @@
 @use "@material/linear-progress/index" as linear-progress;
 
 :root {
-  --mdc-typography-font-family: "M PLUS 1p", sans-serif;
+  --mdc-typography-font-family: "M PLUS 1", sans-serif;
   --app-bar-height: 64px;
   @media screen and (max-width: 599px) {
     --app-bar-height: 56px;
