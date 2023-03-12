@@ -1,6 +1,8 @@
 <script lang="ts">
   import * as animateScroll from "svelte-scrollto";
   import Fab, { Icon } from "@smui/fab";
+  import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
+
   export let showOnPx = 150;
 
   let hidden = true;
@@ -24,7 +26,7 @@
 
 <div class="back-to-top fab-container" class:hidden>
   <Fab color="primary" on:click={scroll2Top}>
-    <Icon class="material-icons">arrow_upward</Icon>
+    <Icon><ArrowUp /></Icon>
   </Fab>
 </div>
 
