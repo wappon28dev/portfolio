@@ -8,7 +8,7 @@
 </script>
 
 <section>
-  <main>
+  <article>
     <h3>SevelteKitブログ</h3>
     <ul>
       {#each data.items as item}
@@ -19,7 +19,7 @@
         </li>
       {/each}
     </ul>
-  </main>
+  </article>
 </section>
 
 <style>

@@ -2,7 +2,6 @@
   import Tree from "$lib/assets/animated/tree.svelte";
   import Meta from "$lib/components/meta.svelte";
   import { pageManifests } from "$lib/model/manifests";
-
   import { isLoading } from "$lib/model/store";
   import { onMount } from "svelte";
 
@@ -11,17 +10,15 @@
 
 <Meta pageManifest={pageManifests.HOME} />
 
-<main>
-  <div class="container">
-    <content>
-      <Tree size={200} />
-      <div class="text-container">
-        <div>COMING SOON</div>
-        <div>近日公開予定</div>
-      </div>
-    </content>
-  </div>
-</main>
+<div class="container">
+  <article>
+    <Tree size={200} />
+    <div class="text-container">
+      <div>COMING SOON</div>
+      <div>近日公開予定</div>
+    </div>
+  </article>
+</div>
 
 <style lang="scss">
   .container {
@@ -29,7 +26,7 @@
     display: table;
     margin: 0 auto;
 
-    content {
+    article {
       display: table-cell;
       vertical-align: middle;
       text-align: center;

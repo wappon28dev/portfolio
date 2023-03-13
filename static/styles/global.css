@@ -1,20 +1,5 @@
-.wide_title {
-  padding: 30px;
-  text-align: center;
-  font-weight: 800;
-  font-size: 40px;
-  line-height: 1.5em;
-  color: var(--m3-on-primary-container);
-  background-color: var(--m3-inverse-primary);
-}
-
-.main {
-  padding: 16px;
-  text-align: center;
-}
-
 .mdc-button {
-  text-transform: none;
+  text-transform: none !important;
 }
 
 .mdc-drawer {

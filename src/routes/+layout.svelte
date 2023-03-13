@@ -24,6 +24,7 @@
   import { pageManifests } from "$lib/model/manifests";
   import HomeOutline from "svelte-material-icons/HomeOutline.svelte";
   import Launch from "svelte-material-icons/Launch.svelte";
+  import { ThemeProvider } from "$lib/model/theme";
 
   export let data: PageData;
 
@@ -36,6 +37,10 @@
 
     // callback windows width event
     window.addEventListener("resize", updateSize);
+
+    // callback prefers-color-scheme event
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    prefersDark.addEventListener("change", () => new ThemeProvider().update());
   });
 
   function updateSize(): void {
