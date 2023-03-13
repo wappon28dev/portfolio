@@ -17,7 +17,6 @@
   }
 
   function scroll2Top() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     animateScroll.scrollToTop();
   }
 </script>
@@ -25,7 +24,7 @@
 <svelte:window on:scroll={handleOnScroll} />
 
 <div class="back-to-top fab-container" class:hidden>
-  <Fab color="primary" on:click={scroll2Top}>
+  <Fab color="primary" on:click={scroll2Top} aria-label="ページの最初へ戻る">
     <Icon><ArrowUp /></Icon>
   </Fab>
 </div>

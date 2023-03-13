@@ -6,6 +6,9 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
+env:
+  BASE_ORIGIN: ${{ secrets.BASE_ORIGIN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest

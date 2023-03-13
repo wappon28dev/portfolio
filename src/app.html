@@ -12,6 +12,31 @@
     content="width=device-width, initial-scale=1"
   />
 
+  <!-- Google Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="dns-prefetch"
+    href="//fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    rel="dns-prefetch"
+    href="//fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500;700;900&display=swap"
+    rel="preload"
+    as="font"
+  >
+
   <!-- SMUI Styles -->
   <link
     href="%sveltekit.assets%/styles/smui.css"
@@ -39,7 +64,8 @@
   />
   <link
     href="%sveltekit.assets%/styles/global.css"
-    rel="stylesheet"
+    rel="preload"
+    as="style"
   />
   <title>わっぽん</title>
 
@@ -52,9 +78,5 @@
     style="display: contents"
   >%sveltekit.body%</div>
 </body>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500;700;900&display=swap');
-</style>
 
 </html>
