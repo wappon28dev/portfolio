@@ -16,9 +16,7 @@
     hidden = !(scrollContainer().scrollTop > showOnPx);
   }
 
-  function scroll2Top() {
-    animateScroll.scrollToTop();
-  }
+  const scroll2Top = () => void animateScroll.scrollToTop();
 </script>
 
 <svelte:window on:scroll={handleOnScroll} />
@@ -31,8 +29,7 @@
 
 <style lang="scss">
   .back-to-top {
-    opacity: 1;
-    transition: opacity 0.5s, visibility 0.5s;
+    transition: all 300ms;
     position: fixed;
     z-index: 99;
     right: 20px;
@@ -40,7 +37,7 @@
     bottom: 20px;
   }
   .back-to-top.hidden {
-    opacity: 0;
+    transform: scale(0);
     visibility: hidden;
   }
 </style>
