@@ -6,12 +6,13 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
-env:
-  BASE_ORIGIN: ${{ secrets.BASE_ORIGIN }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ (github.ref == 'refs/heads/main' && 'production') || 'preview' }}
+    env:
+      BASE_ORIGIN: ${{ secrets.BASE_ORIGIN }}
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: 📥 Checkout repository
@@ -29,7 +30,7 @@ jobs:
         run: yarn run build
 
       - name: 🔧 Copy configs to build directory
-        run: cp -r ./config/* ./build
+        run: cp -r ./config/* ./build/
 
       - name: 🚀 Deploy to Cloudflare Pages
         id: cloudflare_pages_deploy
