@@ -1,12 +1,16 @@
 https://wappon-28-dev.pages.dev/*
   X-Robots-Tag: noindex
 
-https://_.wappon-28-dev.pages.dev/_
+https://*.wappon-28-dev.pages.dev/*
   X-Robots-Tag: noindex
 
-https://wappon-28-dev.com/*
-  Link: <https://wappon-28-dev.com>; rel="canonical"
-
-https://beta.wappon-28-dev.com/*
+https://*.wappon-28-dev.com/*
   X-Robots-Tag: noindex
-  Link: <https://beta.wappon-28-dev.com>; rel="canonical"
+
+/_app/*
+  X-Robots-Tag: noindex
+	Cache-Control: no-cache
+
+/_app/immutable/*
+  ! Cache-Control
+	Cache-Control: public, immutable, max-age=31536000

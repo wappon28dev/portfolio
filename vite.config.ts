@@ -1,8 +1,25 @@
 import { sveltekit } from "@sveltejs/kit/vite";
-import type { UserConfig } from "vite";
+import { defineConfig } from "vite";
+import viteCompression from "vite-plugin-compression";
+import purgecss from "@fullhuman/postcss-purgecss";
 
-const config: UserConfig = {
-  plugins: [sveltekit()],
-};
-
-export default config;
+export default defineConfig(({ mode }) => {
+  if (mode === "production") {
+    return {
+      plugins: [sveltekit(), viteCompression()],
+      css: {
+        postcss: {
+          plugins: [
+            purgecss({
+              content: ["build/*.html", "build/**/*.js", "build/**/*.css"],
+            }),
+          ],
+        },
+      },
+    };
+  } else {
+    return {
+      plugins: [sveltekit()],
+    };
+  }
+});
