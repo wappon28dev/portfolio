@@ -13,11 +13,14 @@
   import PageTransition from "$lib/components/page-transition.svelte";
   import LinearProgress from "@smui/linear-progress";
   import Splash from "$lib/components/splash.svelte";
-  import { isLandscapeDetect, runTransition } from "$lib/model/constants";
+  import {
+    isLandscapeDetect,
+    runTransition,
+    runTransitionRaw,
+  } from "$lib/model/constants";
   import type { PageData } from "./$types";
   import Button, { Label } from "@smui/button";
   import BackToTop from "$lib/components/back-to-top.svelte";
-  import { goto } from "$app/navigation";
   import { pageManifests } from "$lib/model/manifests";
   import HomeOutline from "svelte-material-icons/HomeOutline.svelte";
   import Launch from "svelte-material-icons/Launch.svelte";
@@ -25,11 +28,11 @@
   export let data: PageData;
 
   let topAppBar: TopAppBarComponentDev;
-  export let hasLoaded = false;
+  let hasMounted = false;
 
   onMount(() => {
     updateSize();
-    hasLoaded = true;
+    hasMounted = true;
 
     // callback windows width event
     window.addEventListener("resize", updateSize);
@@ -42,7 +45,7 @@
   }
 </script>
 
-<div style={`cursor: ${$isLoading ? "progress" : "normal"};`}>
+<div class:isLoading={$isLoading}>
   <TopAppBar bind:this={topAppBar} variant="standard">
     <Row>
       <Section>
@@ -60,7 +63,7 @@
       </Section>
       <Section align="end" toolbar>
         <Button
-          on:click={() => goto("https://github.com/wappon-28-dev/portfolio")}
+          on:click={() => runTransitionRaw("/blog")}
           aria-label="ソースを見に行く"
         >
           <Icon><Launch /></Icon>
@@ -86,7 +89,7 @@
 
   <BackToTop />
 </div>
-<Splash {hasLoaded} />
+<Splash isMounting={!hasMounted} isLoading={$isLoading} />
 
 <style lang="scss">
   :global(.app-content) {
@@ -95,6 +98,10 @@
 
     height: 100%;
     width: 100%;
+
+    &.isLoading {
+      pointer-events: none;
+    }
   }
 
   :global(
@@ -103,6 +110,7 @@
     ) {
     stroke: var(--m3-on-primary);
   }
+
   .progress-mobile {
     margin-top: -5.5px;
     min-height: 4px;

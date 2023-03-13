@@ -3,16 +3,32 @@ import { base } from "$app/paths";
 import { page } from "$app/stores";
 import { get } from "svelte/store";
 import type { PageManifest } from "./manifests";
+import { isLoading } from "./store";
 
 type valueOf<T> = T[keyof T];
 type PickType<T, K extends keyof T> = T[K];
 
-const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const waitMs = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 const runTransition = (to: PageManifest) => {
+  isLoading.set(true);
+
   const path = to.path;
   if (get(page).url.pathname === path) return;
   void goto(base + path);
+};
+
+const runTransitionRaw = async (to: string) => {
+  isLoading.set(true);
+
+  if (get(page).url.pathname === to) {
+    isLoading.set(false);
+    return;
+  }
+
+  await waitMs(100);
+  void goto(base + to);
 };
 
 function isLandscapeDetect(): boolean {
@@ -23,4 +39,4 @@ function isLandscapeDetect(): boolean {
 }
 
 export type { valueOf, PickType };
-export { runTransition, wait, isLandscapeDetect };
+export { runTransition, runTransitionRaw, waitMs, isLandscapeDetect };
