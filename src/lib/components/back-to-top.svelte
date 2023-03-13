@@ -16,24 +16,20 @@
     hidden = !(scrollContainer().scrollTop > showOnPx);
   }
 
-  function scroll2Top() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    animateScroll.scrollToTop();
-  }
+  const scroll2Top = () => void animateScroll.scrollToTop();
 </script>
 
 <svelte:window on:scroll={handleOnScroll} />
 
 <div class="back-to-top fab-container" class:hidden>
-  <Fab color="primary" on:click={scroll2Top}>
+  <Fab color="primary" on:click={scroll2Top} aria-label="ページの最初へ戻る">
     <Icon><ArrowUp /></Icon>
   </Fab>
 </div>
 
 <style lang="scss">
   .back-to-top {
-    opacity: 1;
-    transition: opacity 0.5s, visibility 0.5s;
+    transition: all 300ms;
     position: fixed;
     z-index: 99;
     right: 20px;
@@ -41,7 +37,7 @@
     bottom: 20px;
   }
   .back-to-top.hidden {
-    opacity: 0;
+    transform: scale(0);
     visibility: hidden;
   }
 </style>
