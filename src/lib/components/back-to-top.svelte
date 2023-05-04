@@ -1,9 +1,9 @@
 <script lang="ts">
-  import * as animateScroll from "svelte-scrollto";
   import Fab, { Icon } from "@smui/fab";
   import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
+  import * as animateScroll from "svelte-scrollto";
 
-  export let showOnPx = 150;
+  const showOnPx = 150;
 
   let hidden = true;
 
@@ -16,7 +16,7 @@
     hidden = !(scrollContainer().scrollTop > showOnPx);
   }
 
-  const scroll2Top = () => void animateScroll.scrollToTop();
+  const scroll2Top = animateScroll.scrollToTop;
 </script>
 
 <svelte:window on:scroll={handleOnScroll} />
@@ -29,15 +29,15 @@
 
 <style lang="scss">
   .back-to-top {
-    transition: all 300ms;
+    transition: transform 300ms;
     position: fixed;
     z-index: 99;
     right: 20px;
-    user-select: none;
     bottom: 20px;
-  }
-  .back-to-top.hidden {
-    transform: scale(0);
-    visibility: hidden;
+
+    &.hidden {
+      transform: scale(0);
+      visibility: hidden;
+    }
   }
 </style>

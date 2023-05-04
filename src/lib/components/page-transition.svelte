@@ -1,13 +1,12 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { Style } from "$lib/model/inline-style";
   import type { PageData } from "../../routes/$types";
 
   export let data: PageData;
   const xAxis = false;
 </script>
 
-<div style={new Style({ overflowY: "hidden" }).toString()}>
+<div style="overflowY: hidden">
   {#key data}
     {#if xAxis}
       <div
