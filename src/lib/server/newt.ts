@@ -51,7 +51,11 @@ export async function getArticleList(): Promise<Article[]> {
   return response;
 }
 
-export async function getArticle({ contentId: string }): Promise<Article> {
+export async function getArticle({
+  contentId,
+}: {
+  contentId: string;
+}): Promise<Article> {
   const article = await newtClient.getContent<Article>({
     appUid: "blog",
     modelUid: "article",

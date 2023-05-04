@@ -4,7 +4,8 @@ import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ params }) => {
   await waitMs(1000);
-  return await getArticle({ contentId: params.slug });
+  const contentId = params.slug;
+  return await getArticle({ contentId });
 };
 
 export const prerender = true;
