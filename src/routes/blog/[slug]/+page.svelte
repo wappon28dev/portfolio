@@ -25,6 +25,7 @@
 <section>
   <article>
     <h1>{data.title}</h1>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags-->
     {@html data.body}
   </article>
 </section>

@@ -1,9 +1,9 @@
 // src/lib/server/newt.ts
 
+import { NEWT_CDN_API_TOKEN, NEWT_SPACE_UID } from "$env/static/private";
 import { createClient } from "newt-client-js";
-import { NEWT_SPACE_UID, NEWT_CDN_API_TOKEN } from "$env/static/private";
 
-export interface Article {
+export type Article = {
   _id: string;
   meta: Meta;
   title: string;
@@ -18,9 +18,9 @@ export interface Article {
     width: 600;
     height: 400;
   };
-}
+};
 
-interface Meta {
+type Meta = {
   title: "text";
   description: "text";
   ogImage: {
@@ -32,7 +32,7 @@ interface Meta {
     width: 600;
     height: 400;
   };
-}
+};
 
 export const newtClient = createClient({
   spaceUid: NEWT_SPACE_UID,
@@ -40,7 +40,7 @@ export const newtClient = createClient({
   apiType: "cdn",
 });
 
-export const getArticleList = async () => {
+export async function getArticleList(): Promise<Article[]> {
   const response = await newtClient.getContents<Article>({
     appUid: "blog",
     modelUid: "article",
@@ -49,16 +49,16 @@ export const getArticleList = async () => {
     },
   });
   return response;
-};
+}
 
-export const getArticle = async ({ contentId }: { contentId: string }) => {
+export async function getArticle({ contentId: string }): Promise<Article> {
   const article = await newtClient.getContent<Article>({
     appUid: "blog",
     modelUid: "article",
-    contentId: contentId,
+    contentId,
     query: {
       select: ["title", "meta", "body", "coverImage"],
     },
   });
   return article;
-};
+}

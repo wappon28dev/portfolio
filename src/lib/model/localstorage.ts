@@ -6,19 +6,19 @@ const localStorageKey = {
 type LocalStorageKey = valueOf<typeof localStorageKey>;
 
 class LocalStorage<T> {
-  constructor(private key: LocalStorageKey) {}
+  constructor(private readonly key: LocalStorageKey) {}
 
   public get(): T | undefined {
     const data = localStorage.getItem(this.key);
-    return data ? (JSON.parse(data) as T) : undefined;
+    return data != null ? (JSON.parse(data) as T) : undefined;
   }
 
-  public set(data: T) {
+  public set(data: T): void {
     if (data === undefined) return;
     localStorage.setItem(this.key, JSON.stringify(data));
   }
 
-  public clear() {
+  public clear(): void {
     localStorage.removeItem(this.key);
   }
 }

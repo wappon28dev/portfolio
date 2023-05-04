@@ -5,20 +5,21 @@ export class ThemeProvider extends LocalStorage<boolean> {
     super(localStorageKey.isPreferredDark);
   }
 
-  private isUserPrefersDark = window.matchMedia("(prefers-color-scheme: dark)")
-    .matches;
+  private readonly isUserPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
 
   public isDark = this.get() ?? this.isUserPrefersDark;
 
   public update(): void {
     let smuiLink = document.head.querySelector<HTMLLinkElement>("#smui");
     let colorLink = document.head.querySelector<HTMLLinkElement>("#color");
-    if (!smuiLink) {
+    if (smuiLink == null) {
       smuiLink = document.createElement("link");
       smuiLink.rel = "stylesheet";
       smuiLink.id = "theme";
     }
-    if (!colorLink) {
+    if (colorLink == null) {
       colorLink = document.createElement("link");
       colorLink.rel = "stylesheet";
       colorLink.id = "color";

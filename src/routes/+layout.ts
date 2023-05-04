@@ -1,4 +1,4 @@
-export function load({ url: { pathname } }) {
+export function load({ url: { pathname } }): { pathname: string } {
   return { pathname };
 }
 

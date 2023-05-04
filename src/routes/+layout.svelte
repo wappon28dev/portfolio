@@ -1,30 +1,30 @@
 <script lang="ts">
-  import type TopAppBarComponentDev from "@smui/top-app-bar";
-  import TopAppBar, {
-    Row,
-    Section,
-    Title,
-    AutoAdjust,
-  } from "@smui/top-app-bar";
-  import IconButton, { Icon } from "@smui/icon-button";
-  import { AppContent } from "@smui/drawer";
-  import { isLandscape, isLoading } from "$lib/model/store";
-  import { onMount } from "svelte";
+  import BackToTop from "$lib/components/back-to-top.svelte";
   import PageTransition from "$lib/components/page-transition.svelte";
-  import LinearProgress from "@smui/linear-progress";
   import Splash from "$lib/components/splash.svelte";
   import {
     isLandscapeDetect,
     runTransition,
     runTransitionRaw,
   } from "$lib/model/constants";
-  import type { PageData } from "./$types";
-  import Button, { Label } from "@smui/button";
-  import BackToTop from "$lib/components/back-to-top.svelte";
   import { pageManifests } from "$lib/model/manifests";
+  import { isLandscape, isLoading } from "$lib/model/store";
+  import { ThemeProvider } from "$lib/model/theme";
+  import Button, { Label } from "@smui/button";
+  import { AppContent } from "@smui/drawer";
+  import IconButton, { Icon } from "@smui/icon-button";
+  import LinearProgress from "@smui/linear-progress";
+  import type TopAppBarComponentDev from "@smui/top-app-bar";
+  import TopAppBar, {
+    AutoAdjust,
+    Row,
+    Section,
+    Title,
+  } from "@smui/top-app-bar";
+  import { onMount } from "svelte";
   import HomeOutline from "svelte-material-icons/HomeOutline.svelte";
   import Launch from "svelte-material-icons/Launch.svelte";
-  import { ThemeProvider } from "$lib/model/theme";
+  import type { PageData } from "./$types";
 
   export let data: PageData;
 
@@ -45,8 +45,6 @@
 
   function updateSize(): void {
     $isLandscape = isLandscapeDetect();
-    let path = new URL(location.href).pathname;
-    if (path === "/") return;
   }
 </script>
 

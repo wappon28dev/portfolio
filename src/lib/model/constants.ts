@@ -8,10 +8,11 @@ import { isLoading } from "./store";
 type valueOf<T> = T[keyof T];
 type PickType<T, K extends keyof T> = T[K];
 
-const waitMs = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+const waitMs = async (ms: number): Promise<void> => {
+  await new Promise((resolve) => setTimeout(resolve, ms));
+};
 
-const runTransition = (to: PageManifest) => {
+const runTransition = (to: PageManifest): void => {
   isLoading.set(true);
 
   const path = to.path;
@@ -19,7 +20,7 @@ const runTransition = (to: PageManifest) => {
   void goto(base + path);
 };
 
-const runTransitionRaw = async (to: string) => {
+const runTransitionRaw = async (to: string): void => {
   isLoading.set(true);
 
   if (get(page).url.pathname === to) {
@@ -33,7 +34,7 @@ const runTransitionRaw = async (to: string) => {
 
 function isLandscapeDetect(): boolean {
   return (
-    !navigator.userAgent.match(/iPhone|Android.+Mobile/) &&
+    navigator.userAgent.match(/iPhone|Android.+Mobile/) == null &&
     window.innerWidth > 730
   );
 }
